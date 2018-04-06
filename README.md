@@ -165,7 +165,14 @@ If you're using a CSS framework such as Foundation or Bootstrap, you probably wa
 
 ---
 ## Example
-An example of the component in action is available in the example folder. To see it in action you can run `webpack-dev-server` which will run the webpack build and open the example.
+An example of the component in action is available in the example folder. To see it in action you can run 
+
+```bash
+$ npm i
+$ npm run example
+```
+
+This will run the webpack build and open the example.
 
 ---
 ## Licence

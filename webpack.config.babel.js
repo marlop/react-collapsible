@@ -2,7 +2,6 @@ import path from 'path';
 import autoprefixer from 'autoprefixer';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 
-
 const postcss = {
   loader: 'postcss-loader',
   options: {
