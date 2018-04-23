@@ -12,28 +12,20 @@ Supported by [Browserstack](https://www.browserstack.com).
 
 ---
 ## Migrating from v1.x to v2.x
-Version 2 is 100% API complete to version 1. However, there is a breaking change in the `onOpen` and `onClose` callbacks. These methods now fire at the end of the collapsing animation. There is also the addition of `onOpening` and `onClosing` callbacks which fire at the beginning of the animation. 
+Version 2 is 100% API complete to version 1. However, there is a breaking change in the `onOpen` and `onClose` callbacks. These methods now fire at the end of the collapsing animation. There is also the addition of `onOpening` and `onClosing` callbacks which fire at the beginning of the animation.
 
 To migrate to v2 from v1 simply change the `onOpen` prop to `onOpening` and `onClose` to `onClosing`.
 
-# What's new in version 2.0.3
-Issues fixed (#50, #52)
-
-### 2.0.0 release notes
-* Added `onClosing` and `onOpening` callback props.
-* Several issue fixes (#12, #21, #24)
-
-
----
 ## Installation
-Installation can be achieved via NPM.
+Install via npm or yarn
+
 ```
-npm install react-collapsible
+npm install react-collapsible --save
+yarn add react-collapsible
 ```
 
 Alternatively just download the `Collapsible.js` file form the `src` folder and include it in your project in your chosen way.
 
----
 ## Usage
 Collapsible can receive any HTML elements or React component as it's children. Collapsible will wrap the contents, as well as generate a trigger element which will control showing and hiding.
 
@@ -65,10 +57,15 @@ With a little CSS becomes
 
 ![Alt text](example/img/becomes.png)
 
----
 ## Properties *(Options)*
 ### **trigger** | *string* or *React Element* | **required**
 The text or element to appear in the trigger link.
+
+### **triggerTagName** | *string* | default: span
+The tag name of the element wrapping the trigger text or element.
+
+### **triggerStyle** | *object* | default: null
+Adds a style attribute to the trigger.
 
 ### **triggerWhenOpen** | *string* or *React Element*
 Optional trigger text or element to change to when the Collapsible is open.
@@ -78,6 +75,9 @@ Disables the trigger handler if `true`. Note: this has no effect other than appl
 
 ### **transitionTime** | *number* | default: 400
 The number of milliseconds for the open/close transition to take.
+
+### **transitionCloseTime** | *number* | default: null
+The number of milliseconds for the close transition to take.
 
 ### **easing** | *string* | default: 'linear'
 The CSS easing method you wish to apply to the open/close transition. This string can be any valid value of CSS `transition-timing-function`. For reference view the [MDN documentation](https://developer.mozilla.org/en/docs/Web/CSS/transition-timing-function).
@@ -113,30 +113,33 @@ The CSS overflow property once the Collapsible is open. This can be any one of t
 Escape hatch to add arbitrary content on the trigger without triggering expand/collapse. It's up to you to style it as needed. This is inserted in component tree and DOM directly
 after `.Collapsible__trigger`
 
----
+### **tabIndex** | *number* | default: null
+A `tabIndex` prop adds the `tabIndex` attribute to the trigger element which in turn allows the Collapsible trigger to gain focus.
+
+
 ## CSS Class String Props
 ### **classParentString** | *string* | default: Collapsible
 Use this to overwrite the parent CSS class for the Collapsible component parts. Read more in the CSS section below.
 
-### **className** | *string* 
+### **className** | *string*
 `.Collapsible` element (root) when closed
 
-### **openedClassName** | *string* 
+### **openedClassName** | *string*
 `.Collapsible` element (root) when open
 
-### **triggerClassName** | *string* 
+### **triggerClassName** | *string*
 `.Collapsible__trigger` element (root) when closed
 
-### **triggerOpenedClassName** | *string* 
+### **triggerOpenedClassName** | *string*
 `.Collapsible__trigger` element (root) when open
 
-### **contentOuterClassName** | *string* 
+### **contentOuterClassName** | *string*
 `.Collapsible__contentOuter` element
 
-### **contentInnerClassName** | *string* 
+### **contentInnerClassName** | *string*
 `.Collapsible__contentInner` element
 
----
+
 ## CSS Styles
 In theory you don't need any CSS to get this to work, but let's face it, it'd be pretty rubbish without it.
 
@@ -163,9 +166,8 @@ This is a container for the content passed into the component. This keeps everyt
 
 If you're using a CSS framework such as Foundation or Bootstrap, you probably want to use their classes instead of styling `.Collapsible`. See Properties above.
 
----
 ## Example
-An example of the component in action is available in the example folder. To see it in action you can run 
+An example of the component in action is available in the example folder. To see it in action you can run
 
 ```bash
 $ npm i
@@ -174,6 +176,5 @@ $ npm run example
 
 This will run the webpack build and open the example.
 
----
 ## Licence
 React Responsive Collapsible Section Component is [MIT licensed](LICENSE.md)

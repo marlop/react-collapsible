@@ -9,7 +9,7 @@ const triggerSiblingExample = () => <div className="Collapsible__custom-sibling"
 const App = () => {
   return (
     <div>
-      <Collapsible trigger="Start here">
+      <Collapsible tabIndex={0} trigger="Start here">
         <p>This is the collapsible content. It can be any element or React component you like.</p>
         <p>It can even be another Collapsible component. Check out the next section!</p>
       </Collapsible>
@@ -59,6 +59,11 @@ const App = () => {
         <img src="https://lorempixel.com/320/240?random=4" />
         <img src="https://lorempixel.com/320/240?random=5" />
         <img src="https://lorempixel.com/320/240?random=6" />
+      </Collapsible>
+
+      <Collapsible trigger='You can set a custom trigger tag name.' triggerTagName='div'>
+        <p>Use the <code>`triggerTagName`</code> prop to set the trigger wrapping element.</p>
+        <p>Defaults to <code>span</code>.</p>
       </Collapsible>
 
       <Collapsible trigger="You can customise the CSS a bit more too"
