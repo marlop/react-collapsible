@@ -9,6 +9,7 @@ class Collapsible extends Component {
     this.handleTriggerClick = this.handleTriggerClick.bind(this);
     this.handleTransitionEnd = this.handleTransitionEnd.bind(this);
     this.continueOpenCollapsible = this.continueOpenCollapsible.bind(this);
+    this.setInnerRef = this.setInnerRef.bind(this);
 
     // Defaults the dropdown to be closed
     if (props.open) {
@@ -65,7 +66,7 @@ class Collapsible extends Component {
   closeCollapsible() {
     this.setState({
       shouldSwitchAutoOnNextCycle: true,
-      height: this.refs.inner.offsetHeight,
+      height: this.innerRef.offsetHeight,
       transition: `height ${this.props.transitionCloseTime ?
         this.props.transitionCloseTime : this.props.transitionTime}ms ${this.props.easing}`,
       inTransition: true,
@@ -81,7 +82,7 @@ class Collapsible extends Component {
 
   continueOpenCollapsible() {
     this.setState({
-      height: this.refs.inner.offsetHeight,
+      height: this.innerRef.offsetHeight,
       transition: `height ${this.props.transitionTime}ms ${this.props.easing}`,
       isClosed: false,
       hasBeenOpened: true,
@@ -131,6 +132,10 @@ class Collapsible extends Component {
       this.setState({ inTransition: false });
       this.props.onClose();
     }
+  }
+
+  setInnerRef(ref) {
+    this.innerRef = ref
   }
 
   render() {
@@ -190,13 +195,12 @@ class Collapsible extends Component {
 
         <div
           className={outerClassString.trim()}
-          ref="outer"
           style={dropdownStyle}
           onTransitionEnd={this.handleTransitionEnd}
         >
           <div
             className={innerClassString.trim()}
-            ref="inner"
+            ref={this.setInnerRef}
           >
             {children}
           </div>
