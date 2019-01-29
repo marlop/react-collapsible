@@ -66,7 +66,7 @@ class Collapsible extends Component {
   closeCollapsible() {
     this.setState({
       shouldSwitchAutoOnNextCycle: true,
-      height: this.innerRef.offsetHeight,
+      height: this.innerRef.scrollHeight,
       transition: `height ${this.props.transitionCloseTime ?
         this.props.transitionCloseTime : this.props.transitionTime}ms ${this.props.easing}`,
       inTransition: true,
@@ -82,7 +82,7 @@ class Collapsible extends Component {
 
   continueOpenCollapsible() {
     this.setState({
-      height: this.innerRef.offsetHeight,
+      height: this.innerRef.scrollHeight,
       transition: `height ${this.props.transitionTime}ms ${this.props.easing}`,
       isClosed: false,
       hasBeenOpened: true,
@@ -197,10 +197,10 @@ class Collapsible extends Component {
           className={outerClassString.trim()}
           style={dropdownStyle}
           onTransitionEnd={this.handleTransitionEnd}
+          ref={this.setInnerRef}
         >
           <div
             className={innerClassString.trim()}
-            ref={this.setInnerRef}
           >
             {children}
           </div>

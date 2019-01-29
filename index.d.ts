@@ -22,7 +22,7 @@ interface CollapsibleProps extends React.HTMLProps<Collapsible> {
   onClosing?: () => void
   trigger: string | React.ReactElement<any>
   triggerWhenOpen?: string | React.ReactElement<any>
-  triggerDisabled?: false
+  triggerDisabled?: boolean
   lazyRender?: boolean
   overflowWhenOpen?:
     | 'hidden'
@@ -34,7 +34,7 @@ interface CollapsibleProps extends React.HTMLProps<Collapsible> {
     | 'unset'
   triggerSibling?: React.ReactElement<any>
   className?: string
-  tabIndex?: null | number
+  tabIndex?: number
 }
 
 declare module 'react-collapsible' {
