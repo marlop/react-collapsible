@@ -1,15 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-class Collapsible extends Component {
+export default class Collapsible extends Component {
   constructor(props) {
     super(props)
-
-    // Bind class methods
-    this.handleTriggerClick = this.handleTriggerClick.bind(this);
-    this.handleTransitionEnd = this.handleTransitionEnd.bind(this);
-    this.continueOpenCollapsible = this.continueOpenCollapsible.bind(this);
-    this.setInnerRef = this.setInnerRef.bind(this);
 
     // Defaults the dropdown to be closed
     if (props.open) {
@@ -80,7 +74,7 @@ class Collapsible extends Component {
     });
   }
 
-  continueOpenCollapsible() {
+  continueOpenCollapsible = () => {
     this.setState({
       height: this.innerRef.scrollHeight,
       transition: `height ${this.props.transitionTime}ms ${this.props.easing}`,
@@ -91,7 +85,7 @@ class Collapsible extends Component {
     });
   }
 
-  handleTriggerClick(event) {
+  handleTriggerClick = (event) => {
     event.preventDefault();
 
     if (this.props.triggerDisabled) {
@@ -123,7 +117,7 @@ class Collapsible extends Component {
     return null;
   }
 
-  handleTransitionEnd() {
+  handleTransitionEnd = () => {
     // Switch to height auto to make the container responsive
     if (!this.state.isClosed) {
       this.setState({ height: 'auto', overflow: this.props.overflowWhenOpen, inTransition: false });
@@ -132,10 +126,6 @@ class Collapsible extends Component {
       this.setState({ inTransition: false });
       this.props.onClose();
     }
-  }
-
-  setInnerRef(ref) {
-    this.innerRef = ref
   }
 
   render() {
@@ -197,7 +187,7 @@ class Collapsible extends Component {
           className={outerClassString.trim()}
           style={dropdownStyle}
           onTransitionEnd={this.handleTransitionEnd}
-          ref={this.setInnerRef}
+          ref={(ref) => this.innerRef = ref}
         >
           <div
             className={innerClassString.trim()}
@@ -279,5 +269,3 @@ Collapsible.defaultProps = {
   onClosing: () => {},
   tabIndex: null,
 };
-
-export default Collapsible;
