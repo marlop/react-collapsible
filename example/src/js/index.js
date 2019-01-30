@@ -1,19 +1,25 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import Collapsible from '../../../src/Collapsible'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Collapsible from '../../../src/Collapsible';
 
-import '../sass/main.scss'
+import '../sass/main.scss';
 
 const triggerSiblingExample = () => (
   <div className="Collapsible__custom-sibling">
     This is a sibling to the trigger which wont cause the Collapsible to open!
   </div>
-)
+);
 
 const App = () => {
   return (
     <div>
-      <Collapsible className='classNameDefault' classNameOpen='classNameOpen' classNameClosed='classNameClosed' tabIndex={0} trigger="Start here">
+      <Collapsible
+        className="classNameDefault"
+        classNameOpen="classNameOpen"
+        classNameClosed="classNameClosed"
+        tabIndex={0}
+        trigger="Start here"
+      >
         <p>This is the collapsible content. It can be any element or React component you like.</p>
         <p>It can even be another Collapsible component. Check out the next section!</p>
       </Collapsible>
@@ -164,7 +170,7 @@ const App = () => {
         </p>
       </Collapsible>
     </div>
-  )
-}
+  );
+};
 
-ReactDOM.render(<App />, document.querySelector('#root'))
+ReactDOM.render(<App />, document.querySelector('#root'));
