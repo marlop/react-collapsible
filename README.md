@@ -12,12 +12,6 @@ Supported by [Browserstack](https://www.browserstack.com).
 
 ![Browserstack Logo](example/img/browserstack-logo.png "Browserstack")
 
----
-## Migrating from v1.x to v2.x
-Version 2 is 100% API complete to version 1. However, there is a breaking change in the `onOpen` and `onClose` callbacks. These methods now fire at the end of the collapsing animation. There is also the addition of `onOpening` and `onClosing` callbacks which fire at the beginning of the animation.
-
-To migrate to v2 from v1 simply change the `onOpen` prop to `onOpening` and `onClose` to `onClosing`.
-
 ## Installation
 Install via npm or yarn
 
@@ -26,12 +20,9 @@ npm install react-collapsible --save
 yarn add react-collapsible
 ```
 
-Alternatively just download the `Collapsible.js` file form the `src` folder and include it in your project in your chosen way.
-
 ## Usage
 Collapsible can receive any HTML elements or React component as it's children. Collapsible will wrap the contents, as well as generate a trigger element which will control showing and hiding.
 
-### ES6
 ```javascript
 
 import React from 'react';
@@ -176,7 +167,7 @@ $ npm i
 $ npm run example
 ```
 
-This will run the webpack build and open the example.
+This will run the [parcel](https://parceljs.org/) build and open the example.
 
 ## Issues
 
