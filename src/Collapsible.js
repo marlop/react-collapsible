@@ -162,8 +162,8 @@ export default class Collapsible extends Component {
         : this.props.children
 
     const className = this.props.className
-    const openedClassName = this.props.classNameOpen || ''
-    const closedClassName = this.props.classNameClosed || ''
+    const openedClassName = this.props.classNameOpen
+    const closedClassName = this.props.classNameClosed
 
     // Construct CSS classes strings
     const triggerClassString = `${
