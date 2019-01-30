@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
 export default class Collapsible extends Component {
   constructor(props) {
     super(props);
@@ -141,10 +140,10 @@ export default class Collapsible extends Component {
       overflow: this.state.overflow,
     };
 
-    var openClass = this.state.isClosed ? 'is-closed' : 'is-open';
+    var toggleClassName = this.state.isClosed ? 'is-closed' : 'is-open';
     var disabledClass = this.props.triggerDisabled ? 'is-disabled' : '';
 
-    //If user wants different text when tray is open
+    // If user wants different text when tray is open
     var trigger =
       this.state.isClosed === false && this.props.triggerWhenOpen !== undefined
         ? this.props.triggerWhenOpen
@@ -162,14 +161,15 @@ export default class Collapsible extends Component {
         ? null
         : this.props.children;
 
+    const className = this.props.className;
+    const openedClassName = this.props.classNameOpen;
+    const closedClassName = this.props.classNameClosed;
+
     // Construct CSS classes strings
     const triggerClassString = `${
       this.props.classParentString
-    }__trigger ${openClass} ${disabledClass} ${
+    }__trigger ${toggleClassName} ${disabledClass} ${
       this.state.isClosed ? this.props.triggerClassName : this.props.triggerOpenedClassName
-    }`;
-    const parentClassString = `${this.props.classParentString} ${
-      this.state.isClosed ? this.props.className : this.props.openedClassName
     }`;
     const outerClassString = `${this.props.classParentString}__contentOuter ${
       this.props.contentOuterClassName
@@ -179,7 +179,11 @@ export default class Collapsible extends Component {
     }`;
 
     return (
-      <div className={parentClassString.trim()}>
+      <div
+        className={`${this.props.classParentString} ${className} ${
+          this.state.isClosed ? closedClassName : openedClassName
+        }`}
+      >
         <TriggerElement
           className={triggerClassString.trim()}
           onClick={this.handleTriggerClick}
@@ -211,28 +215,21 @@ export default class Collapsible extends Component {
 }
 
 Collapsible.propTypes = {
-  transitionTime: PropTypes.number,
-  transitionCloseTime: PropTypes.number,
-  triggerTagName: PropTypes.string,
-  easing: PropTypes.string,
-  open: PropTypes.bool,
-  classParentString: PropTypes.string,
-  openedClassName: PropTypes.string,
-  triggerStyle: PropTypes.object,
-  triggerClassName: PropTypes.string,
-  triggerOpenedClassName: PropTypes.string,
-  contentOuterClassName: PropTypes.string,
-  contentInnerClassName: PropTypes.string,
   accordionPosition: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  className: PropTypes.string,
+  classNameClosed: PropTypes.string,
+  classNameOpen: PropTypes.string,
+  classParentString: PropTypes.string,
+  contentInnerClassName: PropTypes.string,
+  contentOuterClassName: PropTypes.string,
+  easing: PropTypes.string,
   handleTriggerClick: PropTypes.func,
-  onOpen: PropTypes.func,
-  onClose: PropTypes.func,
-  onOpening: PropTypes.func,
-  onClosing: PropTypes.func,
-  trigger: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
-  triggerWhenOpen: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
-  triggerDisabled: PropTypes.bool,
   lazyRender: PropTypes.bool,
+  onClose: PropTypes.func,
+  onClosing: PropTypes.func,
+  onOpen: PropTypes.func,
+  onOpening: PropTypes.func,
+  open: PropTypes.bool,
   overflowWhenOpen: PropTypes.oneOf([
     'hidden',
     'visible',
@@ -242,31 +239,41 @@ Collapsible.propTypes = {
     'initial',
     'unset',
   ]),
-  triggerSibling: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
   tabIndex: PropTypes.number,
+  transitionCloseTime: PropTypes.number,
+  transitionTime: PropTypes.number,
+  trigger: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+  triggerClassName: PropTypes.string,
+  triggerDisabled: PropTypes.bool,
+  triggerOpenedClassName: PropTypes.string,
+  triggerSibling: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
+  triggerStyle: PropTypes.object,
+  triggerTagName: PropTypes.string,
+  triggerWhenOpen: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
 };
 
 Collapsible.defaultProps = {
-  transitionTime: 400,
-  transitionCloseTime: null,
-  triggerTagName: 'span',
-  easing: 'linear',
-  open: false,
-  classParentString: 'Collapsible',
-  triggerDisabled: false,
-  lazyRender: false,
-  overflowWhenOpen: 'hidden',
-  openedClassName: '',
-  triggerStyle: null,
-  triggerClassName: '',
-  triggerOpenedClassName: '',
-  contentOuterClassName: '',
-  contentInnerClassName: '',
   className: '',
-  triggerSibling: null,
-  onOpen: () => {},
+  classNameClosed: '',
+  classNameOpen: '',
+  classParentString: 'Collapsible',
+  contentInnerClassName: '',
+  contentOuterClassName: '',
+  easing: 'linear',
+  lazyRender: false,
   onClose: () => {},
-  onOpening: () => {},
   onClosing: () => {},
+  onOpen: () => {},
+  onOpening: () => {},
+  open: false,
+  overflowWhenOpen: 'hidden',
   tabIndex: null,
+  transitionCloseTime: null,
+  transitionTime: 400,
+  triggerClassName: '',
+  triggerDisabled: false,
+  triggerOpenedClassName: '',
+  triggerSibling: null,
+  triggerStyle: null,
+  triggerTagName: 'span',
 };

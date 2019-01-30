@@ -12,6 +12,30 @@ Supported by [Browserstack](https://www.browserstack.com).
 
 ![Browserstack Logo](example/img/browserstack-logo.png "Browserstack")
 
+---
+
+# Version 3.0.0
+
+## V3 Props
+
+| Prop | Description | Default |
+|---|---|---|
+|**`className`**|The class name for the root component applied in all states (open & closed). |`''`|
+|**`classNameOpen`**|The class name for the root component applied when open. |`''`|
+|**`classNameClosed`**|The class name for the root component applied when closed. |`''`|
+
+## Migrating from v2.x.x to 3.x.x
+
+### **Breaking Changes**
+
+• `className` prop would add a class to the root element **when closed**. It is now state agnostic. Use `classNameOpen` and `classNameClosed` prop.
+
+## Migrating from v1.x to v2.x
+
+Version 2 is 100% API complete to version 1. However, there is a breaking change in the `onOpen` and `onClose` callbacks. These methods now fire at the end of the collapsing animation. There is also the addition of `onOpening` and `onClosing` callbacks which fire at the beginning of the animation.
+
+To migrate to v2 from v1 simply change the `onOpen` prop to `onOpening` and `onClose` to `onClosing`.
+
 ## Installation
 Install via npm or yarn
 
