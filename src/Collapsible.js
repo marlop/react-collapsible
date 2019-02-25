@@ -87,11 +87,11 @@ export default class Collapsible extends Component {
   };
 
   handleTriggerClick = event => {
-    event.preventDefault();
-
     if (this.props.triggerDisabled) {
       return;
     }
+
+    event.preventDefault();
 
     if (this.props.handleTriggerClick) {
       this.props.handleTriggerClick(this.props.accordionPosition);
