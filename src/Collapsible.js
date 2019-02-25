@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 export default class Collapsible extends Component {
   constructor(props) {
     super(props);
+    this.timeout = undefined;
 
     // Defaults the dropdown to be closed
     if (props.open) {
@@ -34,7 +35,8 @@ export default class Collapsible extends Component {
     }
 
     if (prevState.height === 'auto' && this.state.shouldSwitchAutoOnNextCycle === true) {
-      window.setTimeout(() => {
+      window.clearTimeout(this.timeout);
+      this.timeout = window.setTimeout(() => {
         // Set small timeout to ensure a true re-render
         this.setState({
           height: 0,
@@ -55,6 +57,10 @@ export default class Collapsible extends Component {
         this.props.onClosing();
       }
     }
+  }
+
+  componentWillUnmount() {
+    window.clearTimeout(this.timeout);
   }
 
   closeCollapsible() {
