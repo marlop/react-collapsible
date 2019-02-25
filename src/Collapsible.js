@@ -146,11 +146,13 @@ export default class Collapsible extends Component {
       overflow: this.state.overflow,
     };
 
-    var toggleClassName = this.state.isClosed ? 'is-closed' : 'is-open';
-    var disabledClass = this.props.triggerDisabled ? 'is-disabled' : '';
+    const toggleClassName = this.state.isClosed
+      ? this.props.isClosedClassName
+      : this.props.isOpenClassName;
+    const disabledClass = this.props.triggerDisabled ? this.props.isDisabledClassName : '';
 
     // If user wants different text when tray is open
-    var trigger =
+    const trigger =
       this.state.isClosed === false && this.props.triggerWhenOpen !== undefined
         ? this.props.triggerWhenOpen
         : this.props.trigger;
@@ -229,6 +231,9 @@ Collapsible.propTypes = {
   contentInnerClassName: PropTypes.string,
   contentOuterClassName: PropTypes.string,
   easing: PropTypes.string,
+  isClosedClassName: PropTypes.string,
+  isDisabledClassName: PropTypes.string,
+  isOpenClassName: PropTypes.string,
   handleTriggerClick: PropTypes.func,
   lazyRender: PropTypes.bool,
   onClose: PropTypes.func,
@@ -266,6 +271,9 @@ Collapsible.defaultProps = {
   contentInnerClassName: '',
   contentOuterClassName: '',
   easing: 'linear',
+  isClosedClassName: 'is-closed',
+  isDisabledClassName: 'is-disabled',
+  isOpenClassName: 'is-open',
   lazyRender: false,
   onClose: () => {},
   onClosing: () => {},
