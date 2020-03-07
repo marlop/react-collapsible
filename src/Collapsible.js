@@ -99,7 +99,7 @@ class Collapsible extends Component {
   }
 
   handleTriggerClick(event) {
-    if (this.props.triggerDisabled) {
+    if (this.props.triggerDisabled || !event.target.className.startsWith("list")) {
       return
     }
 
